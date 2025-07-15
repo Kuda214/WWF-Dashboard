@@ -8,7 +8,7 @@ export default function HomePage() {
     const NavigateToDashboard = () => {
         console.log('Login button clicked');
         setShowLogin(false); 
-        navigate('SB'); 
+        navigate('SB/dashboard'); 
         console.log('Navigating to dashboard');
     }
   return (
