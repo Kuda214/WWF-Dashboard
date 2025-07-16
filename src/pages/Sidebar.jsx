@@ -41,8 +41,19 @@ const Sidebar = () => {
             <LayoutDashboardIcon className="w-4 h-4" /> Dashboard
           </NavLink>
           
+           <NavLink
+                    to="/SB/download-center"
+                    className={({ isActive }) =>
+                    `flex items-center gap-2 px-4 py-2 rounded-md hover:bg-green-700 transition ${
+                        isActive ? "bg-green-800" : ""
+                    }`
+                    }
+                >
+            <LayoutDashboardIcon className="w-4 h-4" /> Download Center
+          </NavLink>
+
           <div>
-            <button
+            {/* <button
               onClick={() => setOpenSubNav(!openSubNav)}
               className="flex items-center justify-between w-full px-4 py-2 text-left hover:bg-green-700 rounded-md transition"
             >
@@ -52,19 +63,10 @@ const Sidebar = () => {
                 <HomeIcon className="w-4 h-4" /> Home
               </span>
               <span>{openSubNav ? "^" : "v"}</span>
-            </button>
+            </button> */}
             {openSubNav && (
               <div className="ml-6 mt-1 space-y-1">
-                <NavLink
-                  to="/calendar"
-                  className={({ isActive }) =>
-                    `block px-4 py-2 rounded-md text-sm hover:bg-green-700 ${
-                      isActive ? "bg-green-800" : ""
-                    }`
-                  }
-                >
-                  <CalendarIcon className="inline-block w-4 h-4 mr-2" /> Calendar
-                </NavLink>
+                
                 <NavLink
                   to="/assigned"
                   className={({ isActive }) =>
@@ -88,6 +90,16 @@ const Sidebar = () => {
               </div>
             )}
           </div>
+        <NavLink
+          to="calendar"
+          className={({ isActive }) =>
+            `block px-4 py-2 rounded-md text-sm hover:bg-green-700 ${
+              isActive ? "bg-green-800" : ""
+            }`
+          }
+        >
+          <CalendarIcon className="inline-block w-4 h-4 mr-2" />  Calendar & Tasks
+        </NavLink>
 
         <NavLink
             to="/SB/chatbot"
@@ -109,6 +121,17 @@ const Sidebar = () => {
             }
           >
             <SettingsIcon className="w-4 h-4" /> Profile
+          </NavLink>
+
+          <NavLink
+            to="/SB/project-management"
+            className={({ isActive }) =>
+              `flex items-center gap-2 px-4 py-2 rounded-md hover:bg-green-700 transition ${
+                isActive ? "bg-green-800" : ""
+              }`
+            }
+          >
+            <SettingsIcon className="w-4 h-4" /> Manage Projects / ClickUp
           </NavLink>
           
           <NavLink
