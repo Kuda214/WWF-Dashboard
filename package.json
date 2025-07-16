@@ -20,6 +20,7 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.6.3",
     "react-simple-maps": "^3.0.0"
+
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
