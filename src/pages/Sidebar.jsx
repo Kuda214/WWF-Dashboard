@@ -77,12 +77,12 @@ const Sidebar = () => {
             {!isCollapsed && "Calendar & Tasks"}
           </NavLink>
 
-          <NavLink to="/settings" className={navItemClass}>
+          <NavLink to="/SB/settings" className={navItemClass}>
             <SettingsIcon size={18} />
             {!isCollapsed && "Settings"}
           </NavLink>
 
-          <NavLink to="/logout" className={navItemClass}>
+          <NavLink to="/" className={navItemClass}>
             <LogOutIcon size={18} />
             {!isCollapsed && "Logout"}
           </NavLink>

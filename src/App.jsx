@@ -14,7 +14,8 @@ import Chatbot from "./pages/Chatbot";
 import DownloadCenter from "./pages/DownloadCenter";
 import Calendar from "./pages/Calendar";
 import ProjectManager from "./pages/ProjectManager";
-import { Download, Sidebar } from "lucide-react";
+import { Download, Settings, Sidebar } from "lucide-react";
+import  SettingsScreen  from "./pages/SettingsScreen";
 // import Calendar from "./pages/Calendar";
 // import AssignedTo from "./pages/AssignedTo";
 // import DownloadCenter from "./pages/DownloadCenter";
@@ -34,6 +35,8 @@ function App() {
           <Route path="download-center"  element={<DownloadCenter />} />
           <Route path="calendar" element={<Calendar />} />
           <Route path="project-management" element={<ProjectManager />} />
+          
+          <Route path="settings" element={<SettingsScreen />} />
         </Route>
 
 

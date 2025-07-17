@@ -4,16 +4,21 @@ import {
   FileTextIcon,
   SettingsIcon,
   BarChartIcon,
-  ClockIcon,
 } from "lucide-react";
 import React from "react";
 
 const navItems = [
-  { name: "WWF Assistant", icon: BotIcon, key: "assistant" },
-  { name: "Templates", icon: FileTextIcon, key: "templates" },
-  { name: "Stats", icon: BarChartIcon, key: "stats" },
-  { name: "Settings", icon: SettingsIcon, key: "settings" },
-  { name: "History", icon: ClockIcon, key: "history" },
+  { name: "Chat", icon: BotIcon, key: "assistant" },
+  { name: "Workflow", icon: FileTextIcon, key: "templates" },
+  { name: "OpenData", icon: BarChartIcon, key: "stats" },
+  // { name: "Settings", icon: SettingsIcon, key: "settings" },
+];
+
+const dataSources = ["Project Data", "Environmental Reports", "Wildlife Logs"];
+const tableSample = [
+  ["ID", "Name", "Status"],
+  ["001", "Habitat Survey", "Complete"],
+  ["002", "Climate Check", "In Progress"],
 ];
 
 export default function WwfAssistant() {
@@ -24,8 +29,10 @@ export default function WwfAssistant() {
     },
   ]);
   const [input, setInput] = useState("");
-  const chatEndRef = useRef(null);
   const [activeTab, setActiveTab] = useState("assistant");
+  const [selectedSource, setSelectedSource] = useState(dataSources[0]);
+
+  const chatEndRef = useRef(null);
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -39,109 +46,196 @@ export default function WwfAssistant() {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  return (
-    <div className="h-[94vh] w-full bg-gray-100 font-sans flex flex-col">
-      {/* Top Navigation */}
-      <header className="bg-gray-500 shadow-sm px-6 py-4 border-b border-gray-200 flex items-center gap-6 text-white point   justify-between ">
-        <div>
-        <h1 className="text-2xl font-bold text-white">Panda</h1>
+  const renderChatSection = () => (
+    <div className="flex-1 flex flex-col  border border-gray-300 h-[80vh] rounded">
+      <div className="flex-1 overflow-y-auto p-4 space-y-3 ">
+        {messages.map((msg, idx) => (
+          <div
+            key={idx}
+            className={`max-w-lg px-4 py-2 rounded-lg text-sm ${
+              msg.role === "user"
+                ? "ml-auto bg-green-500 text-white"
+                : "mr-auto bg-gray-200 text-gray-800"
+            }`}
+          >
+            {msg.text}
+          </div>
+        ))}
+        <div ref={chatEndRef} />
+      </div>
+      <div className="border-t bg-white p-4">
+        <textarea
+          rows={2}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              handleSend();
+            }
+          }}
+          placeholder="Ask something like 'How do I load a project?'"
+          className="w-full resize-none p-3 rounded-lg border border-gray-300 shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        <div className="text-right mt-2">
+          <button
+            onClick={handleSend}
+            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition"
+          >
+            Send
+          </button>
         </div>
+      </div>
+    </div>
+  );
 
-        <div>
+  return (
+    <div className="h-[94vh] w-full bg-gray-50 font-sans flex flex-col">
+      {/* Top Nav */}
+      <header className="bg-gray-800 px-6 py-4 border-b border-gray-300 flex items-center justify-between text-white">
+        <h1 className="text-2xl font-semibold">Panda</h1>
         <nav className="flex gap-4 text-sm font-medium">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <button
-                key={item.key}
-                onClick={() => setActiveTab(item.key)}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-md transition-all ${
-                  activeTab === item.key
-                    ? "bg-green-100 text-green-700"
-                    : "text-white hover:text-green-700 hover:bg-gray-100"
-                }`}
-              >
-                <Icon size={16} />
-                {item.name}
-              </button>
-            );
-          })}
+          {navItems.map(({ name, icon: Icon, key }) => (
+            <button
+              key={key}
+              onClick={() => setActiveTab(key)}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all ${
+                activeTab === key
+                  ? "bg-green-100 text-green-800"
+                  : "text-white hover:text-green-500 hover:bg-gray-200"
+              }`}
+            >
+              <Icon size={16} />
+              {name}
+            </button>
+          ))}
         </nav>
-        </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex  overflow-hidden h-[86vh]">
-        <section className="flex-1 p-6 bg-white rounded-t-lg shadow-inner overflow-y-auto">
-          <h2 className="text-md font-semibold text-gray-800 mb-4">
-            {navItems.find((i) => i.key === activeTab)?.name}
-          </h2>
-
-          <div className="flex flex-col h-[75vh] bg-gray-50 rounded-lg border border-gray-200 shadow-sm">
-            {/* Chat Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3">
-              {messages.map((msg, idx) => (
-                <div
-                  key={idx}
-                  className={`max-w-lg px-4 py-2 rounded-xl text-sm ${
-                    msg.role === "user"
-                      ? "ml-auto bg-green-600 text-white"
-                      : "mr-auto bg-gray-300 text-gray-800"
-                  }`}
-                >
-                  {msg.text}
-                </div>
-              ))}
-              <div ref={chatEndRef} />
-            </div>
-
-            {/* Input Area */}
-            <div className="border-t bg-white p-4 rounded-b-lg">
-              <textarea
-                rows={2}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault();
-                    handleSend();
-                  }
-                }}
-                placeholder="Ask something like 'How do I load a project?'"
-                className="w-full resize-none p-3 rounded-md border border-gray-300 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-green-600"
+      <main className="flex h-[86vh]">
+        {activeTab === "assistant" && (
+          <>
+            <section className="flex-1 p-6 bg-white">{renderChatSection()}</section>
+            <aside className="w-72 p-6 bg-gray-50 border-l border-gray-300 hidden lg:block overflow-y-auto">
+              <h3 className="text-sm font-semibold text-gray-700 mb-3">FAQ</h3>
+              <input
+                type="text"
+                placeholder="Search FAQ..."
+                className="w-full px-3 py-1 mb-4 border border-gray-300 rounded-lg text-sm focus:ring-green-500 focus:outline-none shadow-sm"
               />
-              <div className="text-right mt-2">
-                <button
-                  onClick={handleSend}
-                  className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-md"
-                >
-                  Send
+              <ul className="space-y-2 text-sm text-blue-600">
+                <li className="cursor-pointer hover:underline">How to load a project?</li>
+                <li className="cursor-pointer hover:underline">Where to find templates?</li>
+                <li className="cursor-pointer hover:underline">Deployment steps?</li>
+                <li className="cursor-pointer hover:underline">How to load a project?</li>
+                <li className="cursor-pointer hover:underline">Where to find templates?</li>
+                <li className="cursor-pointer hover:underline">Deployment steps?</li>
+                <li className="cursor-pointer hover:underline">How to load a project?</li>
+                <li className="cursor-pointer hover:underline">Where to find templates?</li>
+                <li className="cursor-pointer hover:underline">Deployment steps?</li>
+              </ul>
+            </aside>
+          </>
+        )}
+
+        {activeTab === "templates" && (
+          <>
+            <section className="w-[25vw] p-4 border-r border-gray-200">
+              {renderChatSection()}
+            </section>
+            
+            <section className=" flex-col  float-right bg-white p-6 w-[45vw]">
+               <button className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 mr-0">
+                Download Report
+              </button>
+              <iframe
+                title="Sample Report"
+                className="w-full h-[82vh] border rounded-lg mb-4 shadow-sm"
+                src="/temp.pdf"
+              ></iframe>
+             
+            </section>
+
+            <aside className="w-[20vw] p-4 border-l border-gray-200 bg-gray-50">
+              <h3 className="text-lg font-semibold mb-4 text-gray-700">Templates:</h3>
+              <ul className="space-y-3 text-sm">
+                {[...Array(7)].map((_, i) => (
+                  <li key={i} className="bg-white p-2 shadow-sm rounded-lg border">
+                    <img
+                      src={`https://via.placeholder.com/150?text=Outcome+${i + 1}`}
+                      alt={`Outcome ${i + 1}`}
+                      className="rounded mb-2"
+                    />
+                    Outcome {i + 1}
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          </>
+        )}
+
+        {activeTab === "stats" && (
+          <>
+            <section className="flex-1 bg-white p-6 overflow-auto">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="font-semibold text-gray-700">Preview Report</h3>
+                <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                  Download Report
                 </button>
               </div>
-            </div>
-          </div>
-        </section>
+            
+              <h3 className="font-semibold text-gray-700 mb-4">
+                {selectedSource} Table
+              </h3>
+              <table className="w-full bg-white border text-sm shadow-sm">
+                <thead className="bg-gray-100 text-left">
+                  <tr>
+                    {tableSample[0].map((head, i) => (
+                      <th key={i} className="px-3 py-2 border">
+                        {head}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {tableSample.slice(1).map((row, rIdx) => (
+                    <tr key={rIdx} className="hover:bg-gray-50">
+                      {row.map((cell, cIdx) => (
+                        <td key={cIdx} className="px-3 py-2 border">
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+            <aside className="w-[20vw] bg-gray-50 border-l border-gray-200 p-4">
+              <h3 className="font-semibold text-gray-700 mb-3">Data Sources</h3>
+              <ul className="space-y-2 text-sm">
+                {dataSources.map((src) => (
+                  <li
+                    key={src}
+                    onClick={() => setSelectedSource(src)}
+                    className={`cursor-pointer px-3 py-2 rounded-lg hover:bg-green-100 ${
+                      selectedSource === src ? "bg-green-100 text-green-800" : ""
+                    }`}
+                  >
+                    {src}
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          </>
+        )}
 
-        {/* Right Sidebar (Recent Topics) */}
-        <aside className="w-72 p-6 bg-gray-50 border-l border-gray-300 hidden lg:block">
-          <div className="text-sm font-bold text-gray-700 mb-2">
-            Recent Topics
-          </div>
-          <ul className="space-y-2 text-sm font-medium text-gray-800">
-            <li className="hover:underline text-blue-500 cursor-pointer">
-              How to load a project?
-            </li>
-            <li className="hover:underline text-blue-500 cursor-pointer">
-              Who manages the updates?
-            </li>
-            <li className="hover:underline text-blue-500 cursor-pointer">
-              Where to find project templates?
-            </li>
-            <li className="hover:underline text-blue-500 cursor-pointer">
-              Steps to request deployment?
-            </li>
-          </ul>
-        </aside>
+        {activeTab === "settings" && (
+          <section className="p-6">
+            <h3 className="text-lg font-semibold text-gray-800">Settings</h3>
+            <p className="mt-4 text-sm text-gray-600">Coming soon...</p>
+          </section>
+        )}
       </main>
     </div>
   );
