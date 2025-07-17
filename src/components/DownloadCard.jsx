@@ -30,6 +30,10 @@ const DownloadCard = ({ data }) => {
 
       {/* Top-right Icons */}
       <div className="absolute top-3 right-3 flex space-x-2">
+        <button title="Download PDF">
+          <img src="/assets/excel.png"  width={28} height={28}/>
+        </button>
+
         {/* PDF Icon */}
         <button title="Download PDF">
           <img src="/assets/pdf.png"  width={28} height={28}/>

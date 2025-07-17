@@ -42,9 +42,9 @@ export default function WwfAssistant() {
   return (
     <div className="h-[94vh] w-full bg-gray-100 font-sans flex flex-col">
       {/* Top Navigation */}
-      <header className="bg-gray-500 shadow-sm px-6 py-4 border-b border-gray-200 flex items-center gap-6 text-white">
+      <header className="bg-gray-500 shadow-sm px-6 py-4 border-b border-gray-200 flex items-center gap-6 text-white point   justify-between ">
         <div>
-        <h1 className="text-xl font-bold text-white">WWF Console</h1>
+        <h1 className="text-2xl font-bold text-white">Panda</h1>
         </div>
 
         <div>

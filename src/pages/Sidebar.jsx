@@ -6,166 +6,118 @@ import {
   SettingsIcon,
   LogOutIcon,
   LockIcon,
-  HomeIcon,
   LayoutDashboardIcon,
   BotIcon,
-} from "lucide-react"; // You can use any icon library or custom icons
+  ChevronLeft,
+  ChevronRight,
+  PhoneIcon,
+} from "lucide-react";
 
 const Sidebar = () => {
-  const [openSubNav, setOpenSubNav] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
+  const navItemClass = ({ isActive }) =>
+    `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-green-700 ${
+      isActive ? "bg-green-800" : ""
+    }`;
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden">
+    <div className="flex h-screen w-screen overflow-hidden font-sans">
       {/* Sidebar */}
-      <aside className="w-64 bg-black text-white flex flex-col">
-        {/* Logo */}
-        <div className="flex items-center justify-center h-20 border-b border-gray-800">
+      <aside
+        className={`bg-black text-white flex flex-col transition-all duration-300 ${
+          isCollapsed ? "w-16" : "w-64"
+        } relative`}
+      >
+        {/* Top Logo */}
+        <div className="flex items-center gap-2 h-16 px-4 border-b border-gray-800 sticky top-0 bg-black z-10">
           <img
             src="https://icon2.cleanpng.com/lnd/20241123/kw/4c9122edfb53fff6770a8c8c679680.webp"
             alt="WWF Logo"
-            className="h-12"
+            className={`h-16 -ml-5 object-contain transition-all duration-300  ${
+              isCollapsed ? "flex-grow ml-0" : "w-16"
+            }`}
           />
-          WWF
+          {!isCollapsed && <span className="text-xl font-bold ml-4">WWF</span>}
         </div>
 
-        <nav className="flex-1 p-4 space-y-1">
-          {/* Home with subnav */}
-          <NavLink
-                    to="/SB/dashboard"
-                    className={({ isActive }) =>
-                    `flex items-center gap-2 px-4 py-2 rounded-md hover:bg-green-700 transition ${
-                        isActive ? "bg-green-800" : ""
-                    }`
-                    }
-                >
-            <LayoutDashboardIcon className="w-4 h-4" /> Dashboard
-          </NavLink>
-          
-           <NavLink
-                    to="/SB/download-center"
-                    className={({ isActive }) =>
-                    `flex items-center gap-2 px-4 py-2 rounded-md hover:bg-green-700 transition ${
-                        isActive ? "bg-green-800" : ""
-                    }`
-                    }
-                >
-            <LayoutDashboardIcon className="w-4 h-4" /> Download Center
+        {/* Navigation */}
+        <nav className="flex-1 px-2 py-4 space-y-1 overflow-y-auto">
+          <NavLink to="/SB/dashboard" className={navItemClass}>
+            <LayoutDashboardIcon size={18} />
+            {!isCollapsed && "Dashboard"}
           </NavLink>
 
-          <div>
-            {/* <button
-              onClick={() => setOpenSubNav(!openSubNav)}
-              className="flex items-center justify-between w-full px-4 py-2 text-left hover:bg-green-700 rounded-md transition"
-            >
-          
-
-              <span className="flex items-center gap-2">
-                <HomeIcon className="w-4 h-4" /> Home
-              </span>
-              <span>{openSubNav ? "^" : "v"}</span>
-            </button> */}
-            {openSubNav && (
-              <div className="ml-6 mt-1 space-y-1">
-                
-                <NavLink
-                  to="/assigned"
-                  className={({ isActive }) =>
-                    `block px-4 py-2 rounded-md text-sm hover:bg-green-700 ${
-                      isActive ? "bg-green-800" : ""
-                    }`
-                  }
-                >
-                  Assigned To
-                </NavLink>
-                <NavLink
-                  to="/downloads"
-                  className={({ isActive }) =>
-                    `block px-4 py-2 rounded-md text-sm hover:bg-green-700 ${
-                      isActive ? "bg-green-800" : ""
-                    }`
-                  }
-                >
-                  <DownloadIcon className="inline-block w-4 h-4 mr-2" /> Download Center
-                </NavLink>
-              </div>
-            )}
-          </div>
-        <NavLink
-          to="calendar"
-          className={({ isActive }) =>
-            `block px-4 py-2 rounded-md text-sm hover:bg-green-700 ${
-              isActive ? "bg-green-800" : ""
-            }`
-          }
-        >
-          <CalendarIcon className="inline-block w-4 h-4 mr-2" />  Calendar & Tasks
-        </NavLink>
-
-        <NavLink
-            to="/SB/chatbot"
-            className={({ isActive }) =>
-              `flex items-center gap-2 px-4 py-2 rounded-md hover:bg-green-700 transition ${
-                isActive ? "bg-green-800" : ""
-              }`
-            }
-          >
-            <BotIcon className="w-4 h-4" /> Chatbot 
-        </NavLink>
-
-        <NavLink
-            to="/SB/profile"
-            className={({ isActive }) =>
-              `flex items-center gap-2 px-4 py-2 rounded-md hover:bg-green-700 transition ${
-                isActive ? "bg-green-800" : ""
-              }`
-            }
-          >
-            <SettingsIcon className="w-4 h-4" /> Profile
+          <NavLink to="/SB/download-center" className={navItemClass}>
+            <DownloadIcon size={18} />
+            {!isCollapsed && "Download Center"}
           </NavLink>
 
-          <NavLink
-            to="/SB/project-management"
-            className={({ isActive }) =>
-              `flex items-center gap-2 px-4 py-2 rounded-md hover:bg-green-700 transition ${
-                isActive ? "bg-green-800" : ""
-              }`
-            }
-          >
-            <SettingsIcon className="w-4 h-4" /> Manage Projects / ClickUp
-          </NavLink>
-          
-          <NavLink
-            to="/settings"
-            className={({ isActive }) =>
-              `flex items-center gap-2 px-4 py-2 rounded-md hover:bg-green-700 transition ${
-                isActive ? "bg-green-800" : ""
-              }`
-            }
-          >
-            <SettingsIcon className="w-4 h-4" /> Settings
+          <NavLink to="/SB/project-management" className={navItemClass}>
+            <SettingsIcon size={18} />
+            {!isCollapsed && "Manage Projects"}
           </NavLink>
 
-          <NavLink
-            to="/access"
-            className={({ isActive }) =>
-              `flex items-center gap-2 px-4 py-2 rounded-md hover:bg-green-700 transition ${
-                isActive ? "bg-green-800" : ""
-              }`
-            }
-          >
-            <LockIcon className="w-4 h-4" /> Access
+          <NavLink to="/SB/chatbot" className={navItemClass}>
+            <BotIcon size={18} />
+            {!isCollapsed && "Panda"}
           </NavLink>
 
-          <NavLink
-            to="/logout"
-            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-green-700 transition"
-          >
-            <LogOutIcon className="w-4 h-4" /> Logout
+          <NavLink to="/SB/profile" className={navItemClass}>
+            <SettingsIcon size={18} />
+            {!isCollapsed && "My Team"}
+          </NavLink>
+
+          <NavLink to="/SB/calendar" className={navItemClass}>
+            <CalendarIcon size={18} />
+            {!isCollapsed && "Calendar & Tasks"}
+          </NavLink>
+
+          <NavLink to="/settings" className={navItemClass}>
+            <SettingsIcon size={18} />
+            {!isCollapsed && "Settings"}
+          </NavLink>
+
+          <NavLink to="/logout" className={navItemClass}>
+            <LogOutIcon size={18} />
+            {!isCollapsed && "Logout"}
           </NavLink>
         </nav>
+
+        {/* Toggle Arrow */}
+        <button
+          onClick={toggleSidebar}
+          className="absolute top-8 right-3 transform translate-x-full bg-green-700 text-white p-1 rounded-full shadow-md hover:bg-green-800 z-10"
+        >
+          {isCollapsed ? <ChevronRight size={22} /> : <ChevronLeft size={22} />}
+        </button>
+
+        <div className="items-center justify-center mt-4 width-full space-y-1 ml-3">
+          <button className="text-gray-900 hover:text-green-600 justify-center items-center rounded-lg flex gap-2 bg-gray-200 px-4 py-2">
+            <PhoneIcon size={18} />
+            {!isCollapsed && "Support"}
+          </button>
+        </div>
+
+        {/* Footer */}
+        <div className="text-center text-xs text-gray-400 px-2 py-4 border-t border-gray-800">
+           {/* Support */}
+          
+
+          {!isCollapsed && (
+            <>
+              <p>Internal Dashboard Tool</p>
+              <p>WWF © 2025</p>
+            </>
+          )}
+        </div>
       </aside>
 
-      {/* Main content */}
+      {/* Main Content */}
       <main className="flex-1 overflow-y-auto bg-gray-100">
         <div className="p-6">
           <Outlet />
