@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowLeft, Share2, User, Mail, FolderOpen } from "lucide-react";
 import { useNavigate } from "react-router-dom"; // If using React Router
 
-const ProjectDetails = ({ project }) => {
+const ProjectDetails = ({ project , onClose}) => {
   const navigate = useNavigate();
 
   const tasks = [
@@ -15,7 +15,7 @@ const ProjectDetails = ({ project }) => {
     <div className="min-h-screen p-6 bg-gray-100 text-gray-800 font-sans">
       {/* Back Button */}
       <button
-         onClick={() => window.location.reload()}
+         onClick={onClose}
         className="mb-6 text-emerald-600 hover:underline flex items-center"
       >
         <ArrowLeft className="mr-2" /> Back to Projects

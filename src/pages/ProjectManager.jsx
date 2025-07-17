@@ -103,7 +103,11 @@ export default function ProjectDashboard() {
   return (
     <div className="min-h-screen w-full bg-gray-100 font-sans text-gray-800 p-6">
       {selectedProject ? (
-        <ProjectDetails project={selectedProject} />
+        // <ProjectDetails project={selectedProject} />
+        <ProjectDetails
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)} // <-- THIS controls closing
+        />
       ) : (
         <>
           {/* Top Filter Bar */}
