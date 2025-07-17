@@ -18,7 +18,7 @@ const ProjectDetails = ({ project , onClose}) => {
          onClick={onClose}
         className="mb-6 text-emerald-600 hover:underline flex items-center"
       >
-        <ArrowLeft className="mr-2" /> Back to Projects
+        <ArrowLeft className="mr-2" /> Back to Projectss
       </button>
 
       {/* Header */}
