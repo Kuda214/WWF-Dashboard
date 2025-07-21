@@ -4,37 +4,69 @@ import localizer from "../utils/localizer";
 import React from "react";
 
 // Updated responsive styles
+/* Updated responsive styles */
 const responsiveStyles = `
+  .rbc-calendar {
+    font-size: 0.875rem; /* Base font size for better readability */
+  }
+
+  .rbc-month-view .rbc-event {
+    padding: 4px 6px !important; /* Increased padding for content */
+    font-size: 0.75rem !important; /* Base font size for events */
+    min-height: 1.75rem !important; /* Increased min-height to prevent cutoff */
+    line-height: 1.25rem !important; /* Taller line height for better text fit */
+    border-radius: 0.25rem !important;
+    overflow: hidden; /* Prevent text overflow */
+    text-overflow: ellipsis; /* Add ellipsis for long titles */
+    white-space: nowrap; /* Prevent text wrapping to avoid cutoff */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .rbc-time-slot {
+    min-height: 2rem !important; /* Ensure time slots are tall enough */
+  }
+
+  .rbc-toolbar {
+    font-size: 0.875rem;
+    padding: 0.5rem;
+  }
+
+  .rbc-toolbar button {
+    padding: 0.25rem 0.5rem;
+  }
+
+  /* Extra small screens (max-width: 640px) */
   @media (max-width: 640px) {
     .rbc-calendar {
       font-size: 0.75rem;
     }
     .rbc-month-view .rbc-event {
       padding: 2px 4px !important;
-      font-size: 0.7rem !important;
-      min-height: 1.25rem !important;
-      line-height: 1.25rem !important;
+      font-size: 0.65rem !important;
+      min-height: 1.5rem !important; /* Adjusted for smaller screens */
+      line-height: 1.2rem !important;
     }
     .rbc-time-slot {
       min-height: 1.5rem !important;
     }
     .rbc-toolbar {
       font-size: 0.75rem;
-      padding: 0.5rem;
-    }
-    .rbc-toolbar button {
-      padding: 0.25rem 0.5rem;
+      padding: 0.25rem;
     }
   }
+
+  /* Medium screens (641px - 1024px) */
   @media (min-width: 641px) and (max-width: 1024px) {
     .rbc-calendar {
       font-size: 0.85rem;
     }
     .rbc-month-view .rbc-event {
       padding: 3px 5px !important;
-      font-size: 0.8rem !important;
-      min-height: 1.5rem !important;
-      line-height: 1.5rem !important;
+      font-size: 0.75rem !important;
+      min-height: 1.75rem !important;
+      line-height: 1.3rem !important;
     }
     .rbc-time-slot {
       min-height: 1.75rem !important;
@@ -43,40 +75,46 @@ const responsiveStyles = `
       font-size: 0.85rem;
     }
   }
+
+  /* Large screens (min-width: 1025px) */
   @media (min-width: 1025px) {
     .rbc-calendar {
       font-size: 1rem;
     }
     .rbc-month-view .rbc-event {
       padding: 4px 6px !important;
-      font-size: 0.9rem !important;
-      min-height: 1.75rem !important;
-      line-height: 1.75rem !important;
+      font-size: 0.85rem !important;
+      min-height: 2rem !important; /* Larger height for large screens */
+      line-height: 1.5rem !important;
     }
     .rbc-time-slot {
-      min-height: 2rem !important;
+      min-height: 2.25rem !important;
     }
   }
 
-  .rbc-event {
-    padding: 0.25rem !important; /* Relative padding */
-    font-size: 0.75rem !important; /* Relative font size */
-    min-height: 1.5em !important; /* Relative height */
-    line-height: 1.5em !important; /* Align text */
+  /* Ensure events in week/day views are not cut off */
+  .rbc-time-view .rbc-event {
+    padding: 4px 6px !important;
+    min-height: 2rem !important;
+    font-size: 0.75rem !important;
+    line-height: 1.25rem !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     border-radius: 0.25rem !important;
   }
-  @media (max-width: 640px) {
-    .rbc-calendar { font-size: 0.75rem; }
-    .rbc-event { min-height: 1.25em !important; font-size: 0.65rem !important; }
+
+  /* Handle overlapping events */
+  .rbc-event.rbc-event-overlap {
+    opacity: 0.85; /* Slightly transparent to show overlap */
+    min-height: 1.75rem !important; /* Ensure height for overlapping events */
   }
-  @media (min-width: 641px) and (max-width: 1024px) {
-    .rbc-calendar { font-size: 0.85rem; }
-    .rbc-event { min-height: 1.5em !important; font-size: 0.75rem !important; }
+
+  /* Optional: Improve tooltip visibility for long titles */
+  .rbc-event:hover {
+    z-index: 10; /* Ensure hovered events are visible */
   }
-  @media (min-width: 1025px) {
-    .rbc-calendar { font-size: 1rem; }
-    .rbc-event { min-height: 1.75em !important; font-size: 0.85rem !important; }
-  }
+
 `;
 
 // Empty toolbar component
@@ -131,7 +169,7 @@ const CalendarView = ({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-2 sm:p-4 text-gray-700 min-w-0 min-h-[200px] sm:min-h-[300px] max-h-[80vh]">
+    <div className="bg-white rounded-lg shadow-md p-2 sm:p-4 text-gray-700 min-w-0 min-h-[200px] sm:min-h-[300px] max-h-[70vh]">
       <style>{responsiveStyles}</style>
       <Calendar
         localizer={localizer}

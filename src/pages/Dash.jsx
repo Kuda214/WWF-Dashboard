@@ -36,15 +36,15 @@ export default function Dashboard() {
   const COLORS = ['#8e44ad', '#e74c3c', '#f1c40f', '#3498db', '#1abc9c', '#95a5a6'];
 
   return (
-    <div className="p-2 sm:p-4 md:p-6 bg-gray-100 min-h-screen space-y-4 md:space-y-6">
-      {/* FILTER BAR */}
-      <div className="w-full bg-gray-500 p-3 sm:p-4 rounded text-white shadow-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
-        <div className="flex items-center gap-2">
-          <label className="text-xs sm:text-sm md:text-base font-medium">Filter by Category:</label>
+    <div className="p-2 sm:p-4 md:p-6 pt-0 bg-gray-100 min-h-screen space-y-4 md:space-y-6">
+     {/* FILTER BAR */}
+      <div className="w-full bg-gray-500 p-0.75 sm:p-2 sm:pl-5 sm:pr-5 rounded-lg text-white shadow-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.75 sm:gap-1 ">
+        <div className="flex items-center gap-0.5">
+          <label className="text-0.625 sm:text-0.75 md:text-1 font-medium">Filter by Category:</label>
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="px-2 py-1 sm:px-3 sm:py-2 border rounded text-white text-xs sm:text-sm md:text-base"
+            className="px-0.5 py-0.25 sm:px-0.75 sm:py-0.5 border rounded-lg text-white text-0.625 sm:text-0.75 md:text-1"
           >
             {['Oceans', 'Land', 'Wildlife', 'Circular Economy', 'Food', 'Climate & Energy', 'Water'].map((cat) => (
               <option className="text-black" key={cat}>{cat}</option>
@@ -52,9 +52,9 @@ export default function Dashboard() {
           </select>
         </div>
 
-        <div className="flex flex-wrap gap-2 sm:gap-4">
+        <div className="flex flex-wrap gap-0.5 sm:gap-1">
           {Object.keys(visible).map((key) => (
-            <label key={key} className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm md:text-base">
+            <label key={key} className="flex items-center gap-0.25 sm:gap-0.5 text-0.625 sm:text-0.75 md:text-1">
               <input
                 type="checkbox"
                 checked={visible[key]}
@@ -80,9 +80,9 @@ export default function Dashboard() {
         )}
 
         {visible.calendar && (
-          <div className="bg-white p-3 sm:p-4 rounded shadow min-h-[200px] sm:min-h-[300px] max-h-[50vh]">
+          <div className="bg-white p-3 sm:p-4 rounded shadow min-h-[200px] sm:min-h-[300px] max-h-[50vh] overflow-scroll">
             <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-3 sm:mb-4">Calendar</h3>
-            <CalendarComponent height="15rem" showToolbar={false} />
+            <CalendarComponent height="14rem" showToolbar={false} />
           </div>
 
           
