@@ -303,7 +303,7 @@ const dummyData = [
 
 const DownloadCenter = () => {
   const [category, setCategory] = useState('All');
-  const [userType, setUserType] = useState("employee"); // "employee" or "partner"
+  const [userType, setUserType] = useState("Report"); // "employee" or "partner"
   
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-100 px-6 py-2">
@@ -318,7 +318,7 @@ const DownloadCenter = () => {
            {/* Toggle: WWF Employee / Partner */}
           <div className="flex justify-start ">
             <button
-              onClick={() => setUserType("report")}
+              onClick={() => setUserType("Report")}
               className={`px-4 py-2 text-sm font-semibold border rounded-l-lg ${
                 userType === "report"
                   ? "bg-green-600 text-white border-green-600"
