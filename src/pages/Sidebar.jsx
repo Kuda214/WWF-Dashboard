@@ -107,7 +107,7 @@ const Sidebar = () => {
         {/* Logged-in User Info */}
         <div className="flex items-center gap-3 px-4 py-3 border-t border-gray-700 text-white">
           <img
-            src="https://cdn.pixabay.com/photo/2019/11/03/23/28/black-businessman-4599850_640.jpg" // optional
+            src="https://i1.rgstatic.net/ii/profile.image/11431281184836609-1693472463028_Q512/Tanaka-Chiguvare.jpg" // optional
             alt="User Avatar"
             className="w-12 h-12 rounded-full object-cover border-white border-1"
           />
