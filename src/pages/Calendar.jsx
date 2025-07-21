@@ -6,8 +6,8 @@ import React from "react";
 const PersonalCalendar = () => {
   const [events, setEvents] = useState([]);
   const [tasks, setTasks] = useState([
-  { title: "Finish project proposal", due: new Date("2025-07-25"), type: "task" },
-  { title: "Prepare presentation slides", due: new Date("2025-07-27"), type: "task" }
+    { title: "Finish project proposal", due: new Date("2025-07-25"), type: "task" },
+    { title: "Prepare presentation slides", due: new Date("2025-07-27"), type: "task" },
   ]);
 
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
@@ -44,7 +44,8 @@ const PersonalCalendar = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-4 sm:p-6 lg:p-8">
       <div className="max-w-8xl mx-auto">
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 lg:mb-8 gap-4 ">
+        {/* Header */}
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 lg:mb-8 gap-4">
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900">My Calendar</h1>
           <div className="space-x-2">
             <button
@@ -62,60 +63,58 @@ const PersonalCalendar = () => {
           </div>
         </div>
 
-       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 h-[76vh]  ]">
-        {/* Left Pane */}
-        <div className="lg:col-span-1 space-y-2 overflow-y-auto max-h-[80vh] px-2 sm:px-3 text-sm sm:text-base w-[35vw]">
-          
-          {/* Recorded Meetings */}
-          <div className="bg-white rounded-xl shadow p-3 sm:p-4">
-            <h2 className="text-base sm:text-xl font-semibold mb-2 sm:mb-3">
-              📼 Recorded Meetings
-            </h2>
-            <ul className="space-y-2 text-xs sm:text-sm text-gray-700">
-              <li className="hover:text-green-600 hover:underline text-blue-500">• Weekly Sync – July 10</li>
-              <li className="hover:text-green-600 hover:underline text-blue-500">• Marketing Review – July 15</li>
-              <li className="hover:text-green-600 hover:underline text-blue-500">• Planning Sprint – July 18</li>
-            </ul>
-          </div>
+        {/* Main Layout */}
+        <div className="flex gap-6 h-[76vh]">
+          {/* Left Pane */}
+          <div
+            style={{ width: "35vw" }}
+            className="space-y-2 overflow-y-auto max-h-[76vh] px-2 sm:px-3 text-sm sm:text-base"
+          >
+            {/* Recorded Meetings */}
+            <div className="bg-white rounded-xl shadow p-3 sm:p-4">
+              <h2 className="text-base sm:text-xl font-semibold mb-2 sm:mb-3">
+                📼 Recorded Meetings
+              </h2>
+              <ul className="space-y-2 text-xs sm:text-sm text-gray-700">
+                <li className="hover:text-green-600 hover:underline text-blue-500">• Weekly Sync – July 10</li>
+                <li className="hover:text-green-600 hover:underline text-blue-500">• Marketing Review – July 15</li>
+                <li className="hover:text-green-600 hover:underline text-blue-500">• Planning Sprint – July 18</li>
+              </ul>
+            </div>
 
-          {/* Meeting Room */}
-          <div className="bg-white rounded-xl shadow p-3 sm:p-4">
-            <h2 className="text-base sm:text-xl font-semibold mb-2 sm:mb-3">
-              🧑‍💼 Meeting Room
-            </h2>
-            <p className="text-gray-700 text-xs sm:text-sm mb-3 sm:mb-4">
-              This is a space for scheduled calls, quick video links, or live chats.
-            </p>
-
-            {/* Example Meeting */}
-            <div className="border border-gray-200 rounded-md p-2 sm:p-3 mb-3 hover:shadow-md transition cursor-pointer">
-              <div className="flex justify-between items-start sm:items-center gap-2 sm:gap-4">
-                <div>
-                  <h3 className="text-sm sm:text-lg font-semibold text-gray-900">Team Sync-up</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm">July 25, 2025 - 10:00 AM to 11:00 AM</p>
-                  <p className="text-gray-500 text-[10px] sm:text-xs">Zoom Meeting</p>
+            {/* Meeting Room */}
+            <div className="bg-white rounded-xl shadow p-3 sm:p-4">
+              <h2 className="text-base sm:text-xl font-semibold mb-2 sm:mb-3">🧑‍💼 Meeting Room</h2>
+              <p className="text-gray-700 text-xs sm:text-sm mb-3 sm:mb-4">
+                This is a space for scheduled calls, quick video links, or live chats.
+              </p>
+              <div className="border border-gray-200 rounded-md p-2 sm:p-3 mb-3 hover:shadow-md transition cursor-pointer">
+                <div className="flex justify-between items-start sm:items-center gap-2 sm:gap-4">
+                  <div>
+                    <h3 className="text-sm sm:text-lg font-semibold text-gray-900">Team Sync-up</h3>
+                    <p className="text-gray-600 text-xs sm:text-sm">July 25, 2025 - 10:00 AM to 11:00 AM</p>
+                    <p className="text-gray-500 text-[10px] sm:text-xs">Zoom Meeting</p>
+                  </div>
+                  <button
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white px-2 py-1 sm:px-4 sm:py-1 rounded-md text-xs sm:text-sm whitespace-nowrap"
+                    onClick={() => alert("Joining Team Sync-up meeting...")}
+                  >
+                    Join
+                  </button>
                 </div>
-                <button
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-2 py-1 sm:px-4 sm:py-1 rounded-md text-xs sm:text-sm whitespace-nowrap"
-                  onClick={() => alert("Joining Team Sync-up meeting...")}
-                >
-                  Join
-                </button>
               </div>
+            </div>
+
+            {/* Task List */}
+            <div className="bg-white rounded-xl shadow p-3 sm:p-4">
+              <h2 className="text-base sm:text-xl font-semibold mb-2 sm:mb-3">✅ Task List</h2>
+              <TaskList tasks={tasks} className="text-gray-900 text-xs sm:text-sm" />
             </div>
           </div>
 
-          {/* Task List */}
-          <div className="bg-white rounded-xl shadow p-3 sm:p-4">
-            <h2 className="text-base sm:text-xl font-semibold mb-2 sm:mb-3">✅ Task List</h2>
-            <TaskList tasks={tasks} className="text-gray-900 text-xs sm:text-sm" />
-          </div>
-        </div>
-
-
-          {/* Calendar and Task List */}
-          <div className=" w-[50vw] mr-0 over">
-            <div className="bg-white rounded-xl shadow-lg ">
+          {/* Calendar View */}
+          <div style={{ width: "65vw" }} className="overflow-hidden">
+            <div className="bg-white rounded-xl shadow-lg h-full">
               <CalendarView
                 events={events}
                 onDoubleClickSlot={handleAddEvent}
