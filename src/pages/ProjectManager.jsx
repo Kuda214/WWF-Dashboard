@@ -199,9 +199,9 @@ export default function ProjectDashboard() {
       ) : (
         <>
           {/* Top Filter Bar */}
-          <div className="w-full bg-gray-700 p-4 rounded text-white shadow-md flex flex-wrap items-center justify-between gap-4 mb-6">
+          <div className="w-full bg-gray-700 p-2 rounded text-white shadow-md flex flex-wrap items-center justify-between gap-4 mb-6">
             <div className="flex items-center ">
-            <h1 className="text-[2.5vh] font-bold text-white ">
+            <h1 className="text-xl font-bold text-white ">
               Projects
             </h1>
           </div>
@@ -218,7 +218,7 @@ export default function ProjectDashboard() {
               </select>
             </div>
             {/* Search Bar */}
-            <div className="flex justify-start mb-6 mt-4">
+            <div className="flex justify-start">
               <input
                 type="text"
                 placeholder="Search"

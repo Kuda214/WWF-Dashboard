@@ -44,7 +44,7 @@ const PersonalCalendar = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-4 sm:p-6 lg:p-8">
       <div className="max-w-8xl mx-auto">
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 lg:mb-8 gap-4">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 lg:mb-8 gap-4 ">
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900">My Calendar</h1>
           <div className="space-x-2">
             <button
@@ -62,9 +62,9 @@ const PersonalCalendar = () => {
           </div>
         </div>
 
-       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 h-[76vh] ]">
+       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 h-[76vh]  ]">
         {/* Left Pane */}
-        <div className="lg:col-span-1 space-y-2 overflow-y-auto max-h-[80vh] px-2 sm:px-3 text-sm sm:text-base">
+        <div className="lg:col-span-1 space-y-2 overflow-y-auto max-h-[80vh] px-2 sm:px-3 text-sm sm:text-base w-[35vw]">
           
           {/* Recorded Meetings */}
           <div className="bg-white rounded-xl shadow p-3 sm:p-4">
@@ -113,11 +113,9 @@ const PersonalCalendar = () => {
         </div>
 
 
-      
-
           {/* Calendar and Task List */}
-          <div className="lg:col-span-4 space-y-6">
-            <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
+          <div className=" w-[50vw] mr-0 over">
+            <div className="bg-white rounded-xl shadow-lg ">
               <CalendarView
                 events={events}
                 onDoubleClickSlot={handleAddEvent}

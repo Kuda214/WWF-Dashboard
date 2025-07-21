@@ -308,40 +308,40 @@ const DownloadCenter = () => {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-100 px-6 py-2">
       
-        <div className="w-full bg-gray-500 p-4 rounded text-white shadow-lg flex flex-wrap items-center justify-between gap-4 border-1 border-green-200 mb-6">
+        <div className="w-full bg-gray-500 p-2 rounded text-white shadow-lg flex flex-wrap items-center justify-between gap-4 border-1 border-green-200 mb-6">
           <div className="flex items-center ">
-            <h1 className="text-[2.5vh] font-bold text-white ">
+            <h1 className="text-xl font-bold text-white ">
               Download Center
             </h1>
           </div>
 
            {/* Toggle: WWF Employee / Partner */}
-          <div className="flex justify-start mb-6 mt-4">
+          <div className="flex justify-start ">
             <button
-              onClick={() => setUserType("employee")}
+              onClick={() => setUserType("report")}
               className={`px-4 py-2 text-sm font-semibold border rounded-l-lg ${
-                userType === "employee"
+                userType === "report"
                   ? "bg-green-600 text-white border-green-600"
                   : "bg-gray-100 text-gray-600 border-gray-300"
               }`}
             >
-              WWF Employee
+              Report
             </button>
               <button
-                onClick={() => setUserType("partner")}
+                onClick={() => setUserType("Data")}
                 className={`px-4 py-2 text-sm font-semibold border rounded-r-lg ${
-                  userType === "partner"
+                  userType === "Data"
                     ? "bg-green-600 text-white border-green-600"
                     : "bg-gray-100 text-gray-600 border-gray-300"
                 }`}
               >
-                Partner
+                Data
               </button>
             </div>
 
 
           {/* Search Bar */}
-          <div className="flex justify-start mb-6 mt-4">
+          <div className="flex justify-start ">
             <input
               type="text"
               placeholder="Search"
