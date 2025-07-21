@@ -112,8 +112,13 @@ const Sidebar = () => {
             className="w-12 h-12 rounded-full object-cover border-white border-1"
           />
           <div>
-            <p className="text-md font-medium">Hi, Tanaka HC</p> {/* Replace with actual name */}
-            <p className="text-sm text-gray-400">Conservation Project Officer</p> {/* Role (optional) */}
+           
+            {!isCollapsed &&
+              <>
+                <p className="text-md font-medium">Hi, Tanaka HC</p> 
+                <p className="text-sm text-gray-400">Conservation Project Officer</p> 
+              </> 
+            }
           </div>
         </div>
 
