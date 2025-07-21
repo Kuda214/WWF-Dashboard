@@ -169,7 +169,7 @@ const CalendarView = ({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-2 sm:p-4 text-gray-700 min-w-0 min-h-[200px] sm:min-h-[300px] max-h-[70vh]">
+    <div className="bg-white rounded-lg shadow-md p-2 sm:p-4 text-gray-700 min-w-0 min-h-[200px] sm:min-h-[300px] max-h-[70vh] overflow-scroll">
       <style>{responsiveStyles}</style>
       <Calendar
         localizer={localizer}
