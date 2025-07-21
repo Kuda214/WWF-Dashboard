@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import {
   CalendarIcon,
   DownloadIcon,
@@ -25,6 +25,8 @@ const Sidebar = () => {
     `flex items-center gap-3 px-4 py-2 rounded-md transition hover:bg-green-700 ${
       isActive ? "bg-green-800" : ""
     }`;
+  
+  const navigate = useNavigate();
 
   return (
     <div className="flex h-screen w-screen overflow-hidden font-sans">
@@ -102,8 +104,22 @@ const Sidebar = () => {
           {isCollapsed ? <ChevronRight size={22} /> : <ChevronLeft size={22} />}
         </button>
 
+        {/* Logged-in User Info */}
+        <div className="flex items-center gap-3 px-4 py-3 border-t border-gray-700 text-white">
+          <img
+            src="https://cdn.pixabay.com/photo/2019/11/03/23/28/black-businessman-4599850_640.jpg" // optional
+            alt="User Avatar"
+            className="w-12 h-12 rounded-full object-cover border-white border-1"
+          />
+          <div>
+            <p className="text-md font-medium">Hi, Tanaka HC</p> {/* Replace with actual name */}
+            <p className="text-sm text-gray-400">Conservation Project Officer</p> {/* Role (optional) */}
+          </div>
+        </div>
+
         <div className="items-center justify-center mt-4 width-full space-y-1 ml-3">
-          <button className="text-gray-900 hover:text-green-600 justify-center items-center rounded-lg flex gap-2 bg-gray-200 px-4 py-2">
+          <button onClick={() => navigate("/SB/support")}
+             className="text-gray-900 hover:text-green-600 justify-center items-center rounded-lg flex gap-2 bg-gray-200 px-4 py-2">
             <PhoneIcon size={18} />
             {!isCollapsed && "Support"}
           </button>
@@ -112,8 +128,6 @@ const Sidebar = () => {
         {/* Footer */}
         <div className="text-center text-xs text-gray-400 px-2 py-4 border-t border-gray-800">
            {/* Support */}
-          
-
           {!isCollapsed && (
             <>
               <p>Internal Dashboard Tool</p>

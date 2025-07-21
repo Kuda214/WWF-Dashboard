@@ -2,13 +2,15 @@ import React from "react";
 import { ShieldCheck, Mail, User } from "lucide-react";
 
 const mockUser = {
-  name: "Kuda Moyo",
-  email: "kuda.moyo@example.com",
+  name: "Tanaka HC",
+  email: "tanaka.hc@example.com",
   access: {
     Oceans: "Editor",
     Wildlife: "Viewer",
     Climate: "Owner",
     Land: "No Access",
+    Food: "Editor",
+    Water: "Viewer",
   },
 };
 
