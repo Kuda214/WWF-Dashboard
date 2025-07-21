@@ -11,6 +11,9 @@ export default function HomePage() {
         navigate('SB/dashboard'); 
         console.log('Navigating to dashboard');
     }
+     const [userType, setUserType] = useState("employee"); // "employee" or "partner"
+
+
   return (
     <div className="w-screen h-screen bg-white font-sans text-gray-800 overflow-x-hidden">
       {/* Navbar */}
@@ -142,8 +145,35 @@ export default function HomePage() {
         <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
           <div className="bg-white w-full max-w-md p-8 rounded-xl shadow-lg relative">
             <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+          {/* Toggle: WWF Employee / Partner */}
+          <div className="flex justify-start mb-6">
+            <button
+              onClick={() => setUserType("employee")}
+              className={`px-4 py-2 text-sm font-semibold border rounded-l-lg ${
+                userType === "employee"
+                  ? "bg-green-600 text-white border-green-600"
+                  : "bg-gray-100 text-gray-600 border-gray-300"
+              }`}
+            >
+              WWF Employee
+            </button>
+              <button
+                onClick={() => setUserType("partner")}
+                className={`px-4 py-2 text-sm font-semibold border rounded-r-lg ${
+                  userType === "partner"
+                    ? "bg-green-600 text-white border-green-600"
+                    : "bg-gray-100 text-gray-600 border-gray-300"
+                }`}
+              >
+                Partner
+              </button>
+            </div>
+            
             <form className="space-y-4">
-              <input
+              
+          
+
+            <input
                 type="email"
                 placeholder="Email"
                 autoComplete="email"

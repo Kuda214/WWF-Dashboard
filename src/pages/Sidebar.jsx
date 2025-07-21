@@ -11,6 +11,7 @@ import {
   ChevronLeft,
   ChevronRight,
   PhoneIcon,
+  BellIcon,
 } from "lucide-react";
 
 const Sidebar = () => {
@@ -50,6 +51,11 @@ const Sidebar = () => {
           <NavLink to="/SB/dashboard" className={navItemClass}>
             <LayoutDashboardIcon size={18} />
             {!isCollapsed && "Dashboard"}
+          </NavLink>
+
+          <NavLink to="/SB/notifications" className={navItemClass}>
+            <BellIcon size={18} />
+            {!isCollapsed && "Notifications"}
           </NavLink>
 
           <NavLink to="/SB/download-center" className={navItemClass}>

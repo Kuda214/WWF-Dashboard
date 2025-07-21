@@ -12,13 +12,13 @@ const ProjectDetails = ({ project , onClose}) => {
   ];
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100 text-gray-800 font-sans">
+    <div className="min-h-screen p-6 pt-0 bg-gray-100 text-gray-800 font-sans">
       {/* Back Button */}
       <button
          onClick={onClose}
         className="mb-6 text-emerald-600 hover:underline flex items-center"
       >
-        <ArrowLeft className="mr-2" /> Back to Projectsss
+        <ArrowLeft className="mr-2" /> Back to Projects
       </button>
 
       {/* Header */}

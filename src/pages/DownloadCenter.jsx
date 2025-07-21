@@ -303,6 +303,8 @@ const dummyData = [
 
 const DownloadCenter = () => {
   const [category, setCategory] = useState('All');
+  const [userType, setUserType] = useState("employee"); // "employee" or "partner"
+  
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-100 px-6 py-2">
       
@@ -311,6 +313,43 @@ const DownloadCenter = () => {
             <h1 className="text-[2.5vh] font-bold text-white ">
               Download Center
             </h1>
+          </div>
+
+           {/* Toggle: WWF Employee / Partner */}
+          <div className="flex justify-start mb-6 mt-4">
+            <button
+              onClick={() => setUserType("employee")}
+              className={`px-4 py-2 text-sm font-semibold border rounded-l-lg ${
+                userType === "employee"
+                  ? "bg-green-600 text-white border-green-600"
+                  : "bg-gray-100 text-gray-600 border-gray-300"
+              }`}
+            >
+              WWF Employee
+            </button>
+              <button
+                onClick={() => setUserType("partner")}
+                className={`px-4 py-2 text-sm font-semibold border rounded-r-lg ${
+                  userType === "partner"
+                    ? "bg-green-600 text-white border-green-600"
+                    : "bg-gray-100 text-gray-600 border-gray-300"
+                }`}
+              >
+                Partner
+              </button>
+            </div>
+
+
+          {/* Search Bar */}
+          <div className="flex justify-start mb-6 mt-4">
+            <input
+              type="text"
+              placeholder="Search"
+              className="px-4 py-2 text-sm font-semibold border rounded-l-lg"
+            />
+            <button className="px-4 py-2 text-sm font-semibold border rounded-r-lg bg-white hover:bg-green-400  text-black">
+              Search
+            </button>
           </div>
 
           <div className="flex items-center gap-2">

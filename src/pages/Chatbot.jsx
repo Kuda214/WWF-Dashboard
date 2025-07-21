@@ -140,40 +140,62 @@ export default function WwfAssistant() {
         )}
 
         {activeTab === "templates" && (
-          <>
-            <section className="w-[25vw] p-4 border-r border-gray-200">
-              {renderChatSection()}
-            </section>
+        <div className="flex h-[86vh] w-full">
+          <section className="w-[25vw] p-4 border-r border-gray-200 bg-white">
+            {renderChatSection()}
+          </section>
+          <section className="w-[45vw] p-6 bg-white flex flex-col">
             
-            <section className=" flex-col  float-right bg-white p-6 w-[45vw]">
-               <button className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 mr-0">
-                Download Report
-              </button>
+            <div className="flex-1 border rounded-lg shadow-sm overflow-hidden">
               <iframe
                 title="Sample Report"
-                className="w-full h-[82vh] border rounded-lg mb-4 shadow-sm"
+                className="w-full h-full border-0"
                 src="/temp.pdf"
               ></iframe>
-             
-            </section>
+            </div>
+            <div className="mt-4 float-right">
+              <button className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
+                Download Report
+              </button>
+            </div>
+          </section>
 
-            <aside className="w-[20vw] p-4 border-l border-gray-200 bg-gray-50">
-              <h3 className="text-lg font-semibold mb-4 text-gray-700">Templates:</h3>
-              <ul className="space-y-3 text-sm">
-                {[...Array(7)].map((_, i) => (
-                  <li key={i} className="bg-white p-2 shadow-sm rounded-lg border">
+          <aside className="w-[20vw] p-6 bg-gray-50 border-l border-gray-200 overflow-y-auto">
+            <h3 className="text-sm font-semibold text-gray-700 mb-3">Templates</h3>
+              <input
+                type="text"
+                placeholder="Search FAQ..."
+                className="w-full px-3 py-1 mb-4 border border-gray-300 rounded-lg text-sm focus:ring-green-500 focus:outline-none shadow-sm"
+              />
+
+            <ul className="space-y-2 h-[20vh]">
+              {[...Array(7)].map((_, i) => (
+                <li
+                  key={i}
+                  className="flex items-center bg-white px-4 py-3 rounded-lg shadow-sm border hover:bg-gray-50 transition"
+                >
+                  <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-200 shadow-sm mr-2 flex-shrink-0">
                     <img
-                      src={`https://via.placeholder.com/150?text=Outcome+${i + 1}`}
+                      src={`/assets/out1.png`}
                       alt={`Outcome ${i + 1}`}
-                      className="rounded mb-2"
+                      className="w-full h-full object-cover"
                     />
-                    Outcome {i + 1}
-                  </li>
-                ))}
-              </ul>
-            </aside>
-          </>
-        )}
+                  </div>
+                  <p className="text-sm font-medium text-gray-800">Outcome {i + 1}</p>
+                </li>
+              ))}
+
+              <div className="text-center text-gray-500 text-sm mt-2 border border-gray-200 h-[24vh]">
+                <div className="h-[2vh] text-gray-300 w-full bg-blue-200">
+                  <p className="py-4">Number Of API Request for the day</p>
+                </div>
+              </div>
+            </ul>
+              
+
+          </aside>
+        </div>
+      )}
 
         {activeTab === "stats" && (
           <>

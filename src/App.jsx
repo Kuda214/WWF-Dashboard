@@ -16,6 +16,7 @@ import Calendar from "./pages/Calendar";
 import ProjectManager from "./pages/ProjectManager";
 import { Download, Settings, Sidebar } from "lucide-react";
 import  SettingsScreen  from "./pages/SettingsScreen";
+import Notifications from "./pages/Notifications";
 // import Calendar from "./pages/Calendar";
 // import AssignedTo from "./pages/AssignedTo";
 // import DownloadCenter from "./pages/DownloadCenter";
@@ -35,7 +36,7 @@ function App() {
           <Route path="download-center"  element={<DownloadCenter />} />
           <Route path="calendar" element={<Calendar />} />
           <Route path="project-management" element={<ProjectManager />} />
-          
+          <Route path="notifications" element={<Notifications />} />
           <Route path="settings" element={<SettingsScreen />} />
         </Route>
 

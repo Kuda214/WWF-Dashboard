@@ -87,6 +87,94 @@ const mockProjects = [
     "https://i.pravatar.cc/150?img=28",
   ],
 },
+{
+  id: 10,
+  title: "Marine Protected Areas Expansion",
+  category: "Oceans",
+  status: "Planned",
+  manager: "Tariq",
+  description: "Establishing new marine protected zones to safeguard biodiversity hotspots. This project involves mapping key ecosystems, engaging local communities, and advocating for legal protection at regional and national levels.",
+  email: "tariq@marinewatch.org",
+  ownerImg: "https://i.pravatar.cc/150?img=33",
+  collaborators: [
+    "https://i.pravatar.cc/150?img=12",
+    "https://i.pravatar.cc/150?img=17",
+    "https://i.pravatar.cc/150?img=21",
+  ],
+},
+{
+  id: 11,
+  title: "Coral Reef Recovery Program",
+  category: "Oceans",
+  status: "Active",
+  manager: "Lindiwe",
+  description: "Focused on restoring damaged coral reefs through coral gardening, transplantation, and local training. The project also includes ongoing monitoring of reef health and water quality in tropical zones.",
+  email: "lindiwe@reefrescue.org",
+  ownerImg: "https://i.pravatar.cc/150?img=44",
+  collaborators: [
+    "https://i.pravatar.cc/150?img=11",
+    "https://i.pravatar.cc/150?img=22",
+  ],
+},
+{
+  id: 12,
+  title: "Sustainable Fisheries Initiative",
+  category: "Oceans",
+  status: "On Hold",
+  manager: "Diego",
+  description: "Partnering with fishing communities to promote sustainable practices, reduce overfishing, and establish catch limits. The initiative includes technology for tracking fish populations and enforcing marine boundaries.",
+  email: "diego@sustainfish.net",
+  ownerImg: "https://i.pravatar.cc/150?img=5",
+  collaborators: [
+    "https://i.pravatar.cc/150?img=3",
+    "https://i.pravatar.cc/150?img=18",
+    "https://i.pravatar.cc/150?img=26",
+  ],
+},
+{
+  id: 13,
+  title: "Ocean Plastic Interception Tech",
+  category: "Oceans",
+  status: "Active",
+  manager: "Amara",
+  description: "Deploying AI-powered ocean booms to intercept floating plastic waste before it reaches open waters. This includes pilot deployments in high-pollution zones and partnerships with engineering firms.",
+  email: "amara@oceanx.org",
+  ownerImg: "https://i.pravatar.cc/150?img=37",
+  collaborators: [
+    "https://i.pravatar.cc/150?img=14",
+    "https://i.pravatar.cc/150?img=29",
+  ],
+},
+{
+  id: 14,
+  title: "Deep Sea Biodiversity Study",
+  category: "Oceans",
+  status: "Completed",
+  manager: "Sebastian",
+  description: "A scientific expedition to explore deep-sea ecosystems and document new species. Includes publication of open data, underwater photography, and educational materials for public engagement.",
+  email: "sebastian@deepblue.org",
+  ownerImg: "https://i.pravatar.cc/150?img=7",
+  collaborators: [
+    "https://i.pravatar.cc/150?img=8",
+    "https://i.pravatar.cc/150?img=32",
+    "https://i.pravatar.cc/150?img=39",
+  ],
+},
+{
+  id: 15,
+  title: "Mangrove Restoration Partnership",
+  category: "Oceans",
+  status: "Active",
+  manager: "Fatima",
+  description: "Restoring degraded mangrove forests along coastlines to protect against erosion and support biodiversity. Involves replanting, community training, and carbon offset programs.",
+  email: "fatima@blueforest.org",
+  ownerImg: "https://i.pravatar.cc/150?img=25",
+  collaborators: [
+    "https://i.pravatar.cc/150?img=31",
+    "https://i.pravatar.cc/150?img=13",
+    "https://i.pravatar.cc/150?img=45",
+  ],
+}
 
   // Add other mock projects as needed...
 ];
@@ -112,6 +200,11 @@ export default function ProjectDashboard() {
         <>
           {/* Top Filter Bar */}
           <div className="w-full bg-gray-700 p-4 rounded text-white shadow-md flex flex-wrap items-center justify-between gap-4 mb-6">
+            <div className="flex items-center ">
+            <h1 className="text-[2.5vh] font-bold text-white ">
+              Projects
+            </h1>
+          </div>
             <div className="flex items-center gap-3">
               <label className="font-medium">Filter by Category:</label>
               <select
@@ -124,6 +217,18 @@ export default function ProjectDashboard() {
                 ))}
               </select>
             </div>
+            {/* Search Bar */}
+            <div className="flex justify-start mb-6 mt-4">
+              <input
+                type="text"
+                placeholder="Search"
+                className="px-4 py-2 text-sm font-semibold border rounded-l-lg"
+              />
+              <button className="px-4 py-2 text-sm font-semibold border rounded-r-lg bg-white hover:bg-green-400  text-black">
+                Search
+              </button>
+            </div>
+
             <button
               onClick={() => setShowAddForm(true)}
               className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded shadow"
