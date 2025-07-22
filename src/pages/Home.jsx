@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LoginModal from "../components/LoginModal";
 
 export default function HomePage() {
   const [showLogin, setShowLogin] = useState(false);
-    const navigate = useNavigate();
+  const [userType, setUserType] = useState("employee");
+  const navigate = useNavigate();
 
-    const NavigateToDashboard = () => {
-        console.log('Login button clicked');
-        setShowLogin(false); 
-        navigate('SB/dashboard'); 
-        console.log('Navigating to dashboard');
-    }
-     const [userType, setUserType] = useState("employee"); // "employee" or "partner"
-
+  const NavigateToDashboard = () => {
+    setShowLogin(false);
+    navigate("SB/dashboard");
+  };
 
   return (
-    <div className="w-screen h-screen bg-white font-sans text-gray-800 overflow-x-hidden">
+    <div className="min-h-screen bg-white text-gray-800 font-sans overflow-x-hidden">
       {/* Navbar */}
       <nav className="w-full h-16 bg-black text-white flex items-center justify-between px-8 shadow-md">
         <div className="flex items-center space-x-3">
@@ -35,104 +33,104 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="flex flex-col md:flex-row items-center justify-around px-2 py-4">
-        <div className="max-w-xl space-y-6 text-center md:text-left">
-          <h1 className="text-4xl font-extrabold text-gray-900 leading-tight">
-            Empowering Conservation through <span className="text-[#A8C83F]">Data</span> & Insights
+      <section
+        className="relative w-full h-[90vh] flex items-center justify-center bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://cdn.pixabay.com/photo/2022/04/15/07/58/sunset-7133867_960_720.jpg')",
+        }}
+      >
+        <div className="absolute inset-0 bg-black opacity-60"></div>
+        <div className="relative z-10 text-center px-6 max-w-2xl">
+          <h1 className="text-5xl font-extrabold text-white mb-6">
+            Empowering Conservation through{" "}
+            <span className="text-[#A8C83F]">Data</span> & Insights
           </h1>
-          <p className="text-lg text-gray-600">
-            WWF Dashboard helps track environmental projects, measure impact, and protect nature.
+          <p className="text-lg text-gray-200 mb-6">
+            WWF Dashboard helps track environmental projects, measure impact,
+            and protect nature.
           </p>
-          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
-            <button onClick={() => setShowLogin(true)} className="bg-[#A8C83F] hover:bg-[#8AA42F] text-black px-12 py-3 rounded-xl font-bold shadow-lg transition">
+          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
+            <button
+              onClick={() => setShowLogin(true)}
+              className="bg-[#A8C83F] hover:bg-[#8AA42F] text-black px-8 py-3 rounded-xl font-bold shadow transition"
+            >
               Login
             </button>
-            <button className="text-[#00778B] font-semibold underline hover:text-[#005f6e]">
+            <button className="text-white underline font-medium hover:text-[#A8C83F]">
               Learn More
             </button>
           </div>
         </div>
+      </section>
 
-        <div className="mt-10 md:mt-0">
-          <img
-            src="https://cdn.pixabay.com/photo/2022/04/15/07/58/sunset-7133867_960_720.jpg"
-            alt="Nature Icon"
-            className="w-72 h-72"
-          />
+      {/* Stats */}
+      <section className="bg-gray-100 py-10 text-center">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6">
+          {["Oceans", "Wildlife", "Climate", "Water"].map((item, idx) => (
+            <div key={idx}>
+              <div className="text-2xl font-bold text-[#5D3A6A]">500+</div>
+              <div className="text-sm text-gray-600 mt-1">{item} Projects</div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="bg-gray-100 py-5 px-3 text-center">
-        <div className="w-[85%] mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 items-center">
-            {["Oceans", "Wildlife", "Climate", "Water"].map((item, idx) => (
-            <div className="text-center" key={idx}>
-                <div className="text-lg font-bold text-[#5D3A6A]">500+</div>
-                <div className="text-sm text-gray-600 mt-1">{item} Projects</div>
+      {/* Discover Section */}
+      <section className="bg-white py-16 text-center">
+        <h2 className="text-3xl font-bold mb-6">DISCOVER OUR WORK</h2>
+        <p className="text-gray-600 max-w-3xl mx-auto mb-12">
+          WWF works to look after our natural resources — oceans, land, and
+          wildlife — so we can continue to benefit from food, water, and a
+          healthy climate.
+        </p>
+        <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-6 gap-6">
+          {[
+            {
+              label: "Oceans",
+              img: "https://cdn.pixabay.com/photo/2021/02/20/18/11/sea-6034191_1280.jpg",
+              color: "bg-[#00778B]",
+            },
+            {
+              label: "Land",
+              img: "https://cdn.pixabay.com/photo/2014/11/16/15/15/field-533541_960_720.jpg",
+              color: "bg-[#7D872E]",
+            },
+            {
+              label: "Wildlife",
+              img: "https://cdn.pixabay.com/photo/2020/04/03/07/58/rhino-4997858_1280.jpg",
+              color: "bg-[#A30050]",
+            },
+            {
+              label: "Food",
+              img: "https://cdn.pixabay.com/photo/2022/06/19/21/21/grain-7272712_1280.jpg",
+              color: "bg-[#007A30]",
+            },
+            {
+              label: "Climate",
+              img: "https://cdn.pixabay.com/photo/2019/08/01/07/18/desert-4376898_1280.jpg",
+              color: "bg-[#692860]",
+            },
+            {
+              label: "Water",
+              img: "https://cdn.pixabay.com/photo/2018/03/19/15/04/faucet-3240211_1280.jpg",
+              color: "bg-[#00778B]",
+            },
+          ].map((item, idx) => (
+            <div key={idx} className="flex flex-col items-center space-y-3">
+              <img
+                src={item.img}
+                alt={item.label}
+                className="w-24 h-24 rounded-full object-cover shadow-md hover:scale-105 transition-transform"
+              />
+              <button
+                className={`text-white font-bold py-2 px-4 rounded-md w-24 text-sm ${item.color} hover:opacity-90`}
+              >
+                {item.label}
+              </button>
             </div>
-            ))}
+          ))}
         </div>
-       </section>
-
-  
-
-      {/* Discover Our Work */}
-      <section className="bg-gray-100 py-5 px-3 text-center">
-        {/* <div className="w-[85%] mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 items-center"> */}
-            <h2 className="text-2xl font-bold text-center mb-2">DISCOVER OUR WORK</h2> <br/>
-            <p className="text-center text-gray-600 max-w-3xl mx-auto mb-10">
-            WWF works to look after our natural resources — oceans, land and wildlife — so we
-            can continue to benefit from food, water and a healthy climate.
-            </p> <br/>
-
-            <div className="w-[80%] mx-auto grid grid-cols-2 sm:grid-cols-6 gap-2 items-center ">
-            {[
-                {
-                label: "Oceans",
-                img: "https://cdn.pixabay.com/photo/2021/02/20/18/11/sea-6034191_1280.jpg",
-                color: "bg-[#00778B]",
-                },
-                {
-                label: "Land",
-                img: "https://cdn.pixabay.com/photo/2014/11/16/15/15/field-533541_960_720.jpg",
-                color: "bg-[#7D872E]",
-                },
-                {
-                label: "Wildlife",
-                img: "https://cdn.pixabay.com/photo/2020/04/03/07/58/rhino-4997858_1280.jpg",
-                color: "bg-[#A30050]",
-                },
-                {
-                label: "Food",
-                img: "https://cdn.pixabay.com/photo/2022/06/19/21/21/grain-7272712_1280.jpg",
-                color: "bg-[#007A30]",
-                },
-                {
-                label: "Climate",
-                img: "https://cdn.pixabay.com/photo/2019/08/01/07/18/desert-4376898_1280.jpg",
-                color: "bg-[#692860]",
-                },
-                {
-                label: "Water",
-                img: "https://cdn.pixabay.com/photo/2018/03/19/15/04/faucet-3240211_1280.jpg",
-                color: "bg-[#00778B]",
-                },
-            ].map((item, idx) => (
-                <div key={idx} className="flex flex-col items-center space-y-3">
-                <img
-                    src={item.img}
-                    alt={item.label}
-                    className="w-24 h-24 rounded-full object-cover shadow-md"
-                />
-                <button
-                    className={`text-white font-bold py-2 px-4 rounded-md w-24 text-sm ${item.color} hover:opacity-90`}
-                >
-                    {item.label}
-                </button>
-                </div>
-            ))}
-            </div>
-        {/* </div> */}
       </section>
 
       {/* Footer */}
@@ -142,64 +140,8 @@ export default function HomePage() {
 
       {/* Login Modal */}
       {showLogin && (
-        <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
-          <div className="bg-white w-full max-w-md p-8 rounded-xl shadow-lg relative">
-            <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-          {/* Toggle: WWF Employee / Partner */}
-          <div className="flex justify-start mb-6">
-            <button
-              onClick={() => setUserType("employee")}
-              className={`px-4 py-2 text-sm font-semibold border rounded-l-lg ${
-                userType === "employee"
-                  ? "bg-green-600 text-white border-green-600"
-                  : "bg-gray-100 text-gray-600 border-gray-300"
-              }`}
-            >
-              WWF Employee
-            </button>
-              <button
-                onClick={() => setUserType("partner")}
-                className={`px-4 py-2 text-sm font-semibold border rounded-r-lg ${
-                  userType === "partner"
-                    ? "bg-green-600 text-white border-green-600"
-                    : "bg-gray-100 text-gray-600 border-gray-300"
-                }`}
-              >
-                Partner
-              </button>
-            </div>
-            
-            <form className="space-y-4">
-              
-          
-
-            <input
-                type="email"
-                placeholder="Email"
-                autoComplete="email"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A8C83F]"
-              />
-              <input
-                type="password"
-                autoComplete="current-password"
-                placeholder="Password"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A8C83F]"
-              />
-              <button
-                onClick={NavigateToDashboard}
-                type="button"
-                className="w-full bg-[#A8C83F] hover:bg-[#94b736] text-black font-semibold py-3 rounded-lg transition"
-              >
-                Sign In
-              </button>
-            </form>
-            <button
-              onClick={() => setShowLogin(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg"
-            >
-              ×
-            </button>
-          </div>
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+          <LoginModal onClose={() => setShowLogin(false)} />
         </div>
       )}
     </div>

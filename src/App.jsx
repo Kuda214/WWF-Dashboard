@@ -18,6 +18,7 @@ import { Download, Settings, Sidebar } from "lucide-react";
 import  SettingsScreen  from "./pages/SettingsScreen";
 import Notifications from "./pages/Notifications";
 import Support from "./pages/Support";
+import ManageUsers from "./pages/RegisterUser";
 // import Calendar from "./pages/Calendar";
 // import AssignedTo from "./pages/AssignedTo";
 // import DownloadCenter from "./pages/DownloadCenter";
@@ -40,6 +41,7 @@ function App() {
           <Route path="notifications" element={<Notifications />} />
           <Route path="settings" element={<SettingsScreen />} />
           <Route path="support" element={<Support />} />
+          <Route path="users" element={<ManageUsers/>} />
         </Route>
 
 

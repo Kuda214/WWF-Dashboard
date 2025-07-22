@@ -94,6 +94,11 @@ const Sidebar = () => {
             <LogOutIcon size={18} />
             {!isCollapsed && "Logout"}
           </NavLink>
+
+          <NavLink to="/SB/users" className={navItemClass}>
+            <LogOutIcon size={18} />
+            {!isCollapsed && "Manage Users"}
+          </NavLink>
         </nav>
 
         {/* Toggle Arrow */}
