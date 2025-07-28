@@ -35,10 +35,10 @@ export default function LoginModal({ onClose }) {
     }
 
     const metadata = authData.user.user_metadata || {};
-    const roleType = metadata.user_role?.toLowerCase();
-    const jobDescription = metadata.job_description || "";
+    const roleType = metadata.user_type?.toLowerCase();
+    console.log("User authenticated:",metadata.user_role?.toLowerCase());
 
-    if (!roleType || !jobDescription) {
+    if (!roleType ) {
       setLoading(false);
       setErrorMsg("User role or job description not defined. Contact administrator.");
       return;
@@ -55,7 +55,6 @@ export default function LoginModal({ onClose }) {
       id: authData.user.id,
       email: authData.user.email,
       user_type: roleType,
-      job_description: jobDescription,
     }));
 
     setLoading(false);

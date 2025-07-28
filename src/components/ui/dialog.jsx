@@ -3,7 +3,7 @@ import React from "react";
 export const Dialog = ({ open, onOpenChange, children }) => {
   if (!open) return null;
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
         {children}
       </div>
@@ -20,7 +20,7 @@ export const DialogContent = ({ className = '', children }) => {
 };
 
 export const DialogHeader = ({ children }) => {
-  return <div className="mb-4">{children}</div>;
+  return <div className="mb-4 flex flex-direction-row items-center justify-between">{children}</div>;
 };
 
 export const DialogTitle = ({ children }) => {
