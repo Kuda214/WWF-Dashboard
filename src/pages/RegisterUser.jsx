@@ -43,6 +43,12 @@ const UserManagement = () => {
     user_type: "",
     is_active: true,
     assigned_to: "",
+    assigned_user:{
+      first_name: "",
+      last_name: "",
+      email: "",
+      profile_pic_url: ""
+    }
   });
 
   const projectid = new URL(import.meta.env.VITE_SUPABASE_URL).host.split(".")[0];
@@ -60,21 +66,29 @@ const UserManagement = () => {
       );
 
       if (!res.ok) throw new Error(res.statusText);
-      
       const { users: raw } = await res.json();
       
+      console.log("Fetched users:", raw);
       const mapped = raw.map((u) => ({
-        id: u.id,
-        email: u.email,
-        first_name: u.first_name || "",
-        last_name: u.last_name || "",
-        user_type: u.user_metadata?.user_type || "",
-        user_role: u.user_metadata?.user_role || "",
-        is_active:  u.user_metadata?.is_active || false,
-        assigned_to: u.assigned_to || "",
-        job_title: u.job_title || "",
-        
-      })); 
+      id: u.id,
+      email: u.email,
+      first_name: u.first_name || "",
+      last_name: u.last_name || "",
+      user_type: u.user_metadata?.user_type || u.user_type || "",
+      user_role: u.user_metadata?.user_role || "",
+      is_active: u.user_metadata?.is_active ?? false,
+      job_title: u.job_title || "",
+      assigned_to: u.assigned_to || "",
+      assigned_user: {
+        first_name: u.assigned_user?.first_name || "",
+        last_name: u.assigned_user?.last_name || "",
+        email: u.assigned_user?.email || "",
+        profile_pic_url: u.assigned_user?.profile_pic_url || ""
+      }
+    }));
+
+      console.log("Mapped users:", mapped);
+
 
 
       setUsers(mapped);
@@ -362,7 +376,25 @@ const UserManagement = () => {
                     className="appearance-none h-5 w-5 border border-gray-300 rounded-sm not-checked:border-1 not-checked:bg-white not-checked:border-grap-400 checked:bg-green-500 checked:border-transparent cursor-not-allowed"
                   />
                 </td>
-                <td className="px-2">{user.assigned_to}</td>
+                <td className="px-2 py-2">
+                  {user.assigned_user?.first_name ? (
+                    <div className="flex items-center space-x-3">
+                      <img
+                        src={user.assigned_user.profile_pic_url || "/default-avatar.png"}
+                        alt="Profile"
+                        className="w-8 h-8 rounded-full object-cover border"
+                      />
+                      <div className="text-sm">
+                        <div className="font-medium">
+                          {user.assigned_user.first_name} {user.assigned_user.last_name}
+                        </div>
+                        <div className="text-gray-500 text-xs">{user.assigned_user.email}</div>
+                      </div>
+                    </div>
+                  ) : (
+                    <span className="text-sm italic text-gray-400">Unassigned</span>
+                  )}
+                </td>
                 {/* <td>{user.category_access.length} categories</td> */}
                 <td className="px-2">
                   <SmallTableButton onClick={() => {openEditModal(user);setEditingUser_id( user.id);}} variant="outline" size="sm"><Pencil size={14} /> Edit</SmallTableButton>

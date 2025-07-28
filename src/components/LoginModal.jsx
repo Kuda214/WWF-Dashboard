@@ -13,52 +13,52 @@ export default function LoginModal({ onClose }) {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setErrorMsg("");
+    // e.preventDefault();
+    // setErrorMsg("");
 
-    if (!email || !password) {
-      setErrorMsg("Please fill in both fields.");
-      return;
-    }
+    // if (!email || !password) {
+    //   setErrorMsg("Please fill in both fields.");
+    //   return;
+    // }
 
-    setLoading(true);
+    // setLoading(true);
 
-    const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    // const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+    //   email,
+    //   password,
+    // });
 
-    if (authError || !authData.user) {
-      setLoading(false);
-      setErrorMsg(authError?.message || "Authentication failed.");
-      return;
-    }
+    // if (authError || !authData.user) {
+    //   setLoading(false);
+    //   setErrorMsg(authError?.message || "Authentication failed.");
+    //   return;
+    // }
 
-    const metadata = authData.user.user_metadata || {};
-    const roleType = metadata.user_type?.toLowerCase();
-    console.log("User authenticated:",metadata.user_role?.toLowerCase());
+    // const metadata = authData.user.user_metadata || {};
+    // const roleType = metadata.user_type?.toLowerCase();
+    // console.log("User authenticated:",metadata.user_role?.toLowerCase());
 
-    if (!roleType ) {
-      setLoading(false);
-      setErrorMsg("User role or job description not defined. Contact administrator.");
-      return;
-    }
+    // if (!roleType ) {
+    //   setLoading(false);
+    //   setErrorMsg("User role or job description not defined. Contact administrator.");
+    //   return;
+    // }
 
-    if (roleType !== userType) {
-      setLoading(false);
-      setErrorMsg(`Access denied. You are registered as '${roleType}'.`);
-      return;
-    }
+    // if (roleType !== userType) {
+    //   setLoading(false);
+    //   setErrorMsg(`Access denied. You are registered as '${roleType}'.`);
+    //   return;
+    // }
 
-    // Save user context
-    localStorage.setItem("user_context", JSON.stringify({
-      id: authData.user.id,
-      email: authData.user.email,
-      user_type: roleType,
-    }));
+    // // Save user context
+    // localStorage.setItem("user_context", JSON.stringify({
+    //   id: authData.user.id,
+    //   email: authData.user.email,
+    //   user_type: roleType,
+    // }));
 
-    setLoading(false);
-    onClose();
+    // setLoading(false);
+    // onClose();
     navigate("/SB/dashboard");
   };
 
@@ -102,7 +102,7 @@ export default function LoginModal({ onClose }) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-              required
+              // required
             />
           </div>
 
@@ -114,7 +114,7 @@ export default function LoginModal({ onClose }) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-              required
+              // requkired
             />
           </div>
 
