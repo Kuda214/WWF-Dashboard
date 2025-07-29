@@ -12,6 +12,8 @@ import {
   ChevronRight,
   PhoneIcon,
   BellIcon,
+  UserPenIcon,
+  FolderKanbanIcon,
 } from "lucide-react";
 
 const Sidebar = () => {
@@ -66,7 +68,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink to="/SB/project-management" className={navItemClass}>
-            <SettingsIcon size={18} />
+            <FolderKanbanIcon size={18} />
             {!isCollapsed && "Manage Projects"}
           </NavLink>
 
@@ -96,7 +98,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink to="/SB/users" className={navItemClass}>
-            <LogOutIcon size={18} />
+            <UserPenIcon size={18} />
             {!isCollapsed && "Manage Users"}
           </NavLink>
         </nav>
